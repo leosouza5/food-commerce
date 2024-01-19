@@ -163,7 +163,7 @@
 
         <div>
           <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
-          <button style="color: black" type="button" class="btn btn-danger">Save changes</button>
+          <button style="color: black;" type="button" class="btn btn-danger">Save changes</button>
         </div>
       </div>
     </div>
