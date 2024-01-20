@@ -1,13 +1,13 @@
 <?php
   
-  require_once '../../projeto/conexao.php';
-  require_once '../../projeto/cadprodu_services.php';
+  #require_once '../../projeto/conexao.php';
+  #require_once '../../projeto/cadprodu_services.php';
 
-  $conexao = new Conexao();
+  #$conexao = new Conexao();
 
-  $pdo = $conexao->conectar();
+ # $pdo = $conexao->conectar();
 
-  $servico = new produtoService();
+  #$servico = new produtoService();
 
 
 ?>
@@ -21,7 +21,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://kit.fontawesome.com/2afc7f22a6.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="style.css">
-  <script src="funcoes.js"></script>
+  
   <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
   <script src="ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="bootstrap/js/bootstrap.min.js"></script>
@@ -57,6 +57,7 @@
         <span>
           <span>PEDIDO</span>
           <i class="fa-solid fa-cart-shopping"></i>
+          <span style="display: none;" id="contador-carrinho" class="badge badge-pill badge-secondary">0</span>
         </span>
       </button>
     </div>
@@ -91,7 +92,7 @@
       </div>
     </div>
 
-    <div class="col-9 border-left overflow-auto"  style="height: 87vh;" data-toggle="modal" data-target="#exampleModal">
+    <div class="col-9 border-left overflow-auto"  style="height: 87vh;" >
 
       <!---TITULO DA EMPRESA -->
 
@@ -101,19 +102,20 @@
 
        <!---LINHA PRODUTO -->
 
-      <div  class="row no-gutters align-items-center border-bottom p-2 hover" >
+      <div  class="row no-gutters align-items-center border-bottom p-2 hover" data-toggle="modal" data-target="#exampleModal" onclick="coletaDados()">
 
         <div class="col-2 ">
           <img height="80px" src="imagens/teste.jpg" class="rounded" alt="" >
         </div>
 
         <div class="col-8 ">
-          <p style="font-weight: bolder; margin-bottom:">SEM NOME</p>
-          <p class="text-truncate">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum exercitationem consequuntur sint aut maiores! Vero praesentium, repellat iusto dolo.</p>
+          <p id="nome-produto" style="font-weight: bolder; margin-bottom:">SEM NOME</p>
+          <p id="descricao-produto" class="text-truncate">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum exercitationem consequuntur sint aut maiores! Vero praesentium, repellat iusto dolo.</p>
         </div>
 
         <div class="col-2 text-center">
-          <p>R$ 100.00</p>
+          <span>R$ </span>
+          <span id="preco-produto">100.00</span>
         </div>
 
       </div>
@@ -121,98 +123,75 @@
       
   </div>
 
+
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div style="background-color:#eee;" class="modal-content">
-      <div style="background-color: #CF1223;" class="modal-header">
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div style="background-color:#eee;" class="modal-content">
 
-        <h5 style="color:white;" class="modal-title" id="titulo">Modal title</h5>   <!-- TITULO DO MODAL-->
+          <!-- HEADER DO MODAL-->
+
+        <div style="background-color: #CF1223;" class="modal-header">
+
+          <h5 style="color:white;" class="modal-title" id="titulo-modal">Modal title</h5>   
 
 
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true"><i style="color:white; font-weight: 700;" class="fa-solid fa-circle-xmark"></i></span>
-        </button>
-      </div>
-      <div class="modal-body ">    <!-- CORPO DO MODAL -->
 
-        <div class="text-center">
-          <img class="rounded" height="200px" src="imagens/teste.jpg" alt="">
+          <!-- TITULO DO MODAL-->
+
+
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true"><i style="color:white; font-weight: 700;" class="fa-solid fa-circle-xmark"></i></span>
+          </button>
+        </div>
+        <div class="modal-body ">    <!-- CORPO DO MODAL -->
+
+          <div class="text-center">
+            <img class="rounded" height="200px" src="imagens/teste.jpg" alt="">
+          </div>
+
+          <p class="mt-4 text-start" id="descricao-modal" name ="descricao">a</p>
+
+
+          <div style="background-color: #fff;" class="text-center rounded p-2">
+            <h6>
+              <span><i class="fa-solid fa-comment-dots"></i></span>
+              <span>Alguma Observação?</span>
+            </h6>
+            <textarea style="resize: none; width:80%; height: 32px; overflow: hidden;" aria-invalid="false" name="observacao" id="" cols="30" rows="1"></textarea>
+          </div>
         </div>
 
-        <p class="mt-4 text-start" > descricao do produto grandeeee Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde, omnis.</p>
 
-
-        <div style="background-color: #fff;" class="text-center rounded p-2">
-          <h6>
-            <span><i class="fa-solid fa-comment-dots"></i></span>
-            <span>Alguma Observação?</span>
-          </h6>
-          <textarea style="resize: none; width:80%; height: 32px; overflow: hidden;" aria-invalid="false" name="" id="" cols="30" rows="1"></textarea>
-        </div>
-      </div>
-
-
-          <!-- RODAPE MODAL -->
-      <div class="d-flex justify-content-between modal-footer">
-        <div  class="d-flex flex-row align-items-center">
-          <button style="gap: 3px;" class="btn btn-sm">-</button>
-          <h6 class="mt-2 mx-3">1</h6>
-          <button class="btn btn-sm">+</button>
-        </div>
-
-        <div>
-          <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
-          <button style="color: black;" type="button" class="btn btn-danger">Save changes</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-    
-  <!--<div class="container">
-
-      <?php 
-        $registros = $servico->recuperar();
-
-        foreach($registros
-         as $key => $campo){
-      ?>
-
-      <div class="produtos" id="<?=$campo['id']?>">
-
-        <img style="width: 100px;" src="<?php echo $campo['img'];?>" alt="">
-
-        <p class="prod-desc" ><?php echo $campo['descricao'];  ?></p>
-
-        <span >
-
-          <button id="contador-menos" onclick="contador('-','<?=$campo['id']?>','<?=$campo['valor']?>')">-</button>
-
-          <p id="contador-valor-<?=$campo['id']?>">0</p>
-
-          <button id="contador-mais" onclick="contador('+','<?=$campo['id']?>','<?=$campo['valor']?>')">+</button>
-
-        </span>
-        <p class="prod-preco">R$ <?php echo $campo['valor']; ?></p>
-      </div>
-      <hr>
-      <?php 
-        }
-       ?>
            
-  </div>
--->
-  
-<!--
-  <footer>
-    <div class="total-produtos">
-      <p>Total dos produtos : R$ <span id="total-compra">0.00</span> </p>
+
+            <!-- RODAPE MODAL -->
+
+
+
+        <div class="d-flex justify-content-between modal-footer">
+          <div  class="d-flex flex-row align-items-center">
+            <button onclick="contador('-')" style="gap: 3px;" class="btn btn-sm">-</button>
+            <h6 id="contador-valor" class="mt-2 mx-3">1</h6>
+            <button onclick="contador('+')" class="btn btn-sm">+</button>
+          </div>
+
+          <div>
+            <button data-dismiss="modal" onclick="adicionarCarrinho()" style="color: white; background-color: #CF1223; font-weight:500"  class="btn btn-danger">
+
+              <span>Adicionar</span>
+              <span>R$ </span>
+              <span id="total-modal"></span>
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
-    
-    <a href="#" onclick="adicionarCarrinho()" class="fa-solid fa-cart-shopping icone"></a>
-  </footer>
--->
+  </div>
+
+ <script src="funcoes.js"></script>
 
 </body>
+
+
 </html>
