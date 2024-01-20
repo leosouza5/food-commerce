@@ -68,26 +68,26 @@
   <div class="row no-gutters" >
     <div class="col-3 overflow-auto" style="height: 87vh;">
       <div class="list-group">
-        <a style="background-color: #eee; font-weight: 500; color: #212529;" href="#" class="list-group-item list-group-item-action">The current link item</a>
-        <a style="background-color: #eee; font-weight: 500; color: #212529;" href="#" class="list-group-item list-group-item-action">A second link item</a>
-        <a style="background-color: #eee; font-weight: 500; color: #212529;" href="#" class="list-group-item list-group-item-action">A third link item</a>
-        <a style="background-color: #eee; font-weight: 500; color: #212529;" href="#" class="list-group-item list-group-item-action">A fourth link item</a>
-        <a style="background-color: #eee; font-weight: 500; color: #212529;" href="#" class="list-group-item list-group-item-action">A disabled link item</a>
-        <a style="background-color: #eee; font-weight: 500; color: #212529;" href="#" class="list-group-item list-group-item-action">The current link item</a>
-        <a style="background-color: #eee; font-weight: 500; color: #212529;" href="#" class="list-group-item list-group-item-action">A second link item</a>
-        <a style="background-color: #eee; font-weight: 500; color: #212529;" href="#" class="list-group-item list-group-item-action">A third link item</a>
-        <a style="background-color: #eee; font-weight: 500; color: #212529;" href="#" class="list-group-item list-group-item-action">A fourth link item</a>
-        <a style="background-color: #eee; font-weight: 500; color: #212529;" href="#" class="list-group-item list-group-item-action">A disabled link item</a>
-        <a style="background-color: #eee; font-weight: 500; color: #212529;" href="#" class="list-group-item list-group-item-action">The current link item</a>
-        <a style="background-color: #eee; font-weight: 500; color: #212529;" href="#" class="list-group-item list-group-item-action">A second link item</a>
-        <a style="background-color: #eee; font-weight: 500; color: #212529;" href="#" class="list-group-item list-group-item-action">A third link item</a>
-        <a style="background-color: #eee; font-weight: 500; color: #212529;" href="#" class="list-group-item list-group-item-action">A fourth link item</a>
-        <a style="background-color: #eee; font-weight: 500; color: #212529;" href="#" class="list-group-item list-group-item-action">A disabled link item</a>
-        <a style="background-color: #eee; font-weight: 500; color: #212529;" href="#" class="list-group-item list-group-item-action">The current link item</a>
-        <a style="background-color: #eee; font-weight: 500; color: #212529;" href="#" class="list-group-item list-group-item-action">A second link item</a>
-        <a style="background-color: #eee; font-weight: 500; color: #212529;" href="#" class="list-group-item list-group-item-action">A third link item</a>
-        <a style="background-color: #eee; font-weight: 500; color: #212529;" href="#" class="list-group-item list-group-item-action">A fourth link item</a>
-        <a style="background-color: #eee; font-weight: 500; color: #212529;" href="#" class="list-group-item list-group-item-action">A disabled link item</a>
+        <a style="background-color: #eee; font-weight: 500; color: #212529;" href="#" class="list-group-item list-group-item-action hover">The current link item</a>
+        <a style="background-color: #eee; font-weight: 500; color: #212529;" href="#" class="list-group-item list-group-item-action hover">A second link item</a>
+        <a style="background-color: #eee; font-weight: 500; color: #212529;" href="#" class="list-group-item list-group-item-action hover">A third link item</a>
+        <a style="background-color: #eee; font-weight: 500; color: #212529;" href="#" class="list-group-item list-group-item-action hover">A fourth link item</a>
+        <a style="background-color: #eee; font-weight: 500; color: #212529;" href="#" class="list-group-item list-group-item-action hover">A disabled link item</a>
+        <a style="background-color: #eee; font-weight: 500; color: #212529;" href="#" class="list-group-item list-group-item-action hover">The current link item</a>
+        <a style="background-color: #eee; font-weight: 500; color: #212529;" href="#" class="list-group-item list-group-item-action hover">A second link item</a>
+        <a style="background-color: #eee; font-weight: 500; color: #212529;" href="#" class="list-group-item list-group-item-action hover">A third link item</a>
+        <a style="background-color: #eee; font-weight: 500; color: #212529;" href="#" class="list-group-item list-group-item-action hover">A fourth link item</a>
+        <a style="background-color: #eee; font-weight: 500; color: #212529;" href="#" class="list-group-item list-group-item-action hover">A disabled link item</a>
+        <a style="background-color: #eee; font-weight: 500; color: #212529;" href="#" class="list-group-item list-group-item-action hover">The current link item</a>
+        <a style="background-color: #eee; font-weight: 500; color: #212529;" href="#" class="list-group-item list-group-item-action hover">A second link item</a>
+        <a style="background-color: #eee; font-weight: 500; color: #212529;" href="#" class="list-group-item list-group-item-action hover">A third link item</a>
+        <a style="background-color: #eee; font-weight: 500; color: #212529;" href="#" class="list-group-item list-group-item-action hover">A fourth link item</a>
+        <a style="background-color: #eee; font-weight: 500; color: #212529;" href="#" class="list-group-item list-group-item-action hover">A disabled link item</a>
+        <a style="background-color: #eee; font-weight: 500; color: #212529;" href="#" class="list-group-item list-group-item-action hover">The current link item</a>
+        <a style="background-color: #eee; font-weight: 500; color: #212529;" href="#" class="list-group-item list-group-item-action hover">A second link item</a>
+        <a style="background-color: #eee; font-weight: 500; color: #212529;" href="#" class="list-group-item list-group-item-action hover">A third link item</a>
+        <a style="background-color: #eee; font-weight: 500; color: #212529;" href="#" class="list-group-item list-group-item-action hover">A fourth link item</a>
+        <a style="background-color: #eee; font-weight: 500; color: #212529;" href="#" class="list-group-item list-group-item-action hover">A disabled link item</a>
 
       </div>
     </div>
@@ -97,7 +97,7 @@
       <!---TITULO DA EMPRESA -->
 
       <div class="row no-gutters align-items-center">
-        <h1 class="col-12 text-center">TESTE</h1>
+        <h1 class="col-12 text-center">NOME DA EMPRESA</h1>
       </div>    
 
        <!---LINHA PRODUTO -->

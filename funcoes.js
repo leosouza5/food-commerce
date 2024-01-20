@@ -88,7 +88,7 @@ function adicionarCarrinho(){
 	nome_produto = document.getElementById('titulo-modal').innerHTML
 	descricao_produto = document.getElementById('descricao-modal').innerHTML 
 	preco_produto =document.getElementById('total-modal').innerHTML
-	quantidade = document.getElementById('total-modal').innerHTML
+	quantidade = document.getElementById('contador-valor').innerHTML
 
 	produto = [nome_produto,descricao_produto,preco_produto,quantidade]
 
