@@ -53,7 +53,7 @@
 
 
     <div class="col-4 text-right align-middle">
-      <button data-toggle="modal" data-target=".bd-example-modal-xl" id="botao-carrinho" disabled class="btn btn-dark mr-4">
+      <button onclick="adicionarProdutosAoModal()" data-toggle="modal" data-target=".bd-example-modal-xl" id="botao-carrinho" disabled class="btn btn-dark mr-4">
         <span>
           <span>PEDIDO</span>
           <i class="fa-solid fa-cart-shopping"></i>
@@ -158,7 +158,7 @@
               <span><i class="fa-solid fa-comment-dots"></i></span>
               <span>Alguma Observação?</span>
             </h6>
-            <textarea style="resize: none; width:80%; height: 32px; overflow: hidden;" aria-invalid="false" name="observacao" id="" cols="30" rows="1"></textarea>
+            <textarea style="resize: none; width:80%; height: 32px; overflow: hidden;" aria-invalid="false" name="observacao" id="observacao-modal" cols="30" rows="1"></textarea>
           </div>
         </div>
 
@@ -195,11 +195,12 @@
 
 <!-- MODAL CARRINHO-->
 
-  <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+  <div id="modal-carrinho" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
 
 
+<!-- HEADER MODAL -->
 
       <div style="background-color:#CF1223;" class="modal-header">
         <button href="cardapio.php" class="btn hover">
@@ -210,7 +211,64 @@
 
 
 
+
       </div>
+
+      <!-- BODY MODAL-->
+      <div id="conteudo-modal" class="modal-body ml-3">
+        <div class="row no-gutters align-items-center">
+
+
+          <div class="col-2 text-center">
+            <p style="font-weight: bold;" id="carrinho-produto-titulo">SEM NOME</p>
+          </div>
+
+
+          <div class="col-4">
+            <p id="carrinho-produto-descricao" class="font-weight-light text-break">Lorem, ipsum, dolor sit amet consectetur adipisicing elit. Natus adipisci tempora rem tenetur voluptate placeat fuga illum eum, ut modi.</p>
+          </div>
+
+          <div class="col-2 text-center">
+            <span>R$</span>
+
+            <span> 39.99</span>
+          </div>
+
+
+          <div class="col-4 text-center">
+            <div  class="d-flex flex-row align-items-center">
+              <button onclick="contador('-')" style="gap: 6px;" class="btn btn-sm">-</button>
+              <h6 id="contador-valor" class="mt-2 mx-3">1</h6>
+              <button onclick="contador('+')" class="btn btn-sm">+</button>
+            </div>
+          </div>
+
+        </div>
+      
+      </div>
+
+
+      <!-- CARRINHO FOOTER -->
+
+      <div class="d-flex justify-content-between modal-footer">
+
+        <div id="total-carrinho">
+          <span>TOTAL</span>
+          <span id=total-carrinho-valor></span>
+        </div>
+
+          <div>
+            <button data-dismiss="modal" onclick="adicionarCarrinho()" style="color: white; background-color: #CF1223; font-weight:500"  class="btn btn-danger">
+              <span>FINALIZAR</span>
+            </button>
+          </div>
+        </div>
+
+     
+      </div>
+      </div>
+
+
     </div>
   </div>
 </div>

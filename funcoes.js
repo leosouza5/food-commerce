@@ -75,7 +75,8 @@ function coletaDados(){
 	document.getElementById('titulo-modal').innerHTML = nome_produto
 	document.getElementById('descricao-modal').innerHTML = descricao_produto
 	document.getElementById('total-modal').innerHTML = preco_produto
-
+	document.getElementById('contador-valor').innerHTML = 1
+	document.getElementById('observacao-modal').innerHTML = ''
 }
 
 
@@ -86,16 +87,18 @@ function coletaDados(){
 
 function adicionarCarrinho(){
 	nome_produto = document.getElementById('titulo-modal').innerHTML
-	descricao_produto = document.getElementById('descricao-modal').innerHTML 
+	observacao_produto = document.getElementById('observacao-modal').innerHTML 
 	preco_produto =document.getElementById('total-modal').innerHTML
 	quantidade = document.getElementById('contador-valor').innerHTML
 
-	produto = [nome_produto,descricao_produto,preco_produto,quantidade]
+	produto = [nome_produto,observacao_produto,preco_produto,quantidade]
 
 
 	carrinho.push(produto)
 
 	contadorCarrinho()
+
+	console.log(carrinho)
 
 }
 
@@ -117,10 +120,44 @@ function contadorCarrinho(){		//CONTA A QNTD DE PRODUTOS NO CARRINHO
 
 }
 
-function carrinhoEnviar(){
-	var carrinhoJSON = JSON.stringify(carrinho);
 
-	document.getElementById('carrinho-produtos').value = carrinhoJSON
 
-	document.getElementById("carrinhoForm").submit()
-}
+function adicionarProdutosAoModal() {
+        // Limpar o conteúdo atual do modal-body
+        var dynamicModalBody = document.getElementById('conteudo-modal');
+        dynamicModalBody.innerHTML = '';
+
+        // Iterar sobre os produtos e criar elementos para cada um
+         carrinho.forEach(function(produto) {
+                // Criar elementos para o produto
+                var divProduto = document.createElement('div');
+                divProduto.className = 'row no-gutters align-items-center';
+
+                divProduto.innerHTML = `
+                    <div class="col-2 text-center">
+                        <p style="font-weight: bold;" class="carrinho-produto-titulo">${produto[0]}</p>
+                    </div>
+                    <div class="col-4">
+                        <p class="carrinho-produto-descricao font-weight-light text-break">${produto[1]}</p>
+                    </div>
+                    <div class="col-2 text-center">
+                        <span>R$</span>
+                        <span class="carrinho-produto-preco">${produto[2]}</span>
+                    </div>
+                    <div class="col-4 text-center">
+                        <div class="d-flex flex-row align-items-center">
+                            <button onclick="contador('-')" style="gap: 6px;" class="btn btn-sm">-</button>
+                            <h6 class="mt-2 mx-3 contador-valor">${produto[3]}</h6>
+                            <button onclick="contador('+')" class="btn btn-sm">+</button>
+                        </div>
+                    </div>
+                `;
+
+                // Adicionar o elemento do produto ao modal-body
+                dynamicModalBody.appendChild(divProduto);
+            });
+    }
+
+    document.getElementById('modal-carrinho').addEventListener('show.bs.modal', function () {
+            adicionarProdutosAoModal();
+        });
