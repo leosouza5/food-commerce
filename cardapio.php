@@ -53,7 +53,7 @@
 
 
     <div class="col-4 text-right align-middle">
-      <button class="btn btn-dark mr-4">
+      <button data-toggle="modal" data-target=".bd-example-modal-xl" id="botao-carrinho" disabled class="btn btn-dark mr-4">
         <span>
           <span>PEDIDO</span>
           <i class="fa-solid fa-cart-shopping"></i>
@@ -124,7 +124,7 @@
   </div>
 
 
-<!-- Modal -->
+<!-- Modal Produtos -->
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div style="background-color:#eee;" class="modal-content">
@@ -188,6 +188,44 @@
       </div>
     </div>
   </div>
+
+
+
+
+
+<!-- MODAL CARRINHO-->
+
+  <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+
+
+
+      <div style="background-color:#CF1223;" class="modal-header">
+        <button href="cardapio.php" class="btn hover">
+        <i style="color: white; font-size: 1.3rem;" class="fa-solid fa-arrow-left"></i>
+        </button>
+
+        <h6 style="color: white; font-size: 1.3rem; font-weight: BOLD;" class="p-2 mt-1">PEDIDO</h6>
+
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+  <form id="carrinhoForm" action="carrinho.php" method="post">
+        <input id="carrinho-produtos" type="hidden" name="produtos">
+    </form>
 
  <script src="funcoes.js"></script>
 

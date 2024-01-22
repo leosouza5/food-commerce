@@ -95,16 +95,16 @@ function adicionarCarrinho(){
 
 	carrinho.push(produto)
 
-	console.log(carrinho)
-
 	contadorCarrinho()
 
 }
 
 
-function contadorCarrinho(){
+function contadorCarrinho(){		//CONTA A QNTD DE PRODUTOS NO CARRINHO
 
-	console.log(carrinho.length)
+	botaoElemento = document.getElementById('botao-carrinho')
+	botaoElemento.removeAttribute('disabled')
+
 	quantidadeCarrinho = document.getElementById('contador-carrinho').innerHTML
 
 	elemento = document.getElementById('contador-carrinho')
@@ -115,7 +115,12 @@ function contadorCarrinho(){
 
 	elemento.style.display = "inherit"
 
-	
-	
+}
 
+function carrinhoEnviar(){
+	var carrinhoJSON = JSON.stringify(carrinho);
+
+	document.getElementById('carrinho-produtos').value = carrinhoJSON
+
+	document.getElementById("carrinhoForm").submit()
 }
