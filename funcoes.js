@@ -58,7 +58,7 @@ function atualizarValor(valor,operador){
 
 
 
-//  		FUNÇOES PARA INSERIR NO MODAL CARDAPIO.PHP     //
+//  		FUNÇOES PARA INSERIR NO MODAL PRODUTO CARDAPIO.PHP     //
 
 
 function coletaDados(){
@@ -76,7 +76,7 @@ function coletaDados(){
 	document.getElementById('descricao-modal').innerHTML = descricao_produto
 	document.getElementById('total-modal').innerHTML = preco_produto
 	document.getElementById('contador-valor').innerHTML = 1
-	document.getElementById('observacao-modal').innerHTML = ''
+	document.getElementById('observacao-modal').value = ''
 }
 
 
@@ -87,7 +87,7 @@ function coletaDados(){
 
 function adicionarCarrinho(){
 	nome_produto = document.getElementById('titulo-modal').innerHTML
-	observacao_produto = document.getElementById('observacao-modal').innerHTML 
+	observacao_produto = document.getElementById('observacao-modal').value
 	preco_produto =document.getElementById('total-modal').innerHTML
 	quantidade = document.getElementById('contador-valor').innerHTML
 
@@ -126,12 +126,18 @@ function adicionarProdutosAoModal() {
         // Limpar o conteúdo atual do modal-body
         var dynamicModalBody = document.getElementById('conteudo-modal');
         dynamicModalBody.innerHTML = '';
-
+		valorTotal = 0
         // Iterar sobre os produtos e criar elementos para cada um
          carrinho.forEach(function(produto) {
+
+
+         		valorTotal += parseFloat(produto[2])
+
+         		console.log(valorTotal)
+
                 // Criar elementos para o produto
                 var divProduto = document.createElement('div');
-                divProduto.className = 'row no-gutters align-items-center';
+                divProduto.className = 'row no-gutters align-items-center my-5 shadow p-5';
 
                 divProduto.innerHTML = `
                     <div class="col-2 text-center">
@@ -149,13 +155,19 @@ function adicionarProdutosAoModal() {
                             <button onclick="contador('-')" style="gap: 6px;" class="btn btn-sm">-</button>
                             <h6 class="mt-2 mx-3 contador-valor">${produto[3]}</h6>
                             <button onclick="contador('+')" class="btn btn-sm">+</button>
+
+                            <button  class="btn hover text-right"><i class="fa-solid fa-trash-can"></i></button>
                         </div>
+
+
                     </div>
                 `;
 
                 // Adicionar o elemento do produto ao modal-body
                 dynamicModalBody.appendChild(divProduto);
             });
+
+         document.getElementById('total-carrinho-valor').innerHTML = valorTotal.toFixed(2)
     }
 
     document.getElementById('modal-carrinho').addEventListener('show.bs.modal', function () {

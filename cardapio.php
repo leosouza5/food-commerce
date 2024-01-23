@@ -113,9 +113,9 @@
           <p id="descricao-produto" class="text-truncate">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum exercitationem consequuntur sint aut maiores! Vero praesentium, repellat iusto dolo.</p>
         </div>
 
-        <div class="col-2 text-center">
+        <div class="col-2 text-center p-2">
           <span>R$ </span>
-          <span id="preco-produto">100.00</span>
+          <span id="preco-produto">99.99</span>
         </div>
 
       </div>
@@ -126,7 +126,7 @@
 
 <!-- Modal Produtos -->
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-dialog modal-lg " role="document">
       <div style="background-color:#eee;" class="modal-content">
 
           <!-- HEADER DO MODAL-->
@@ -196,7 +196,7 @@
 <!-- MODAL CARRINHO-->
 
   <div id="modal-carrinho" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-xl" role="document">
+  <div class="modal-dialog modal-xl modal-dialog-scrollable" role="document">
     <div class="modal-content">
 
 
@@ -241,6 +241,9 @@
               <h6 id="contador-valor" class="mt-2 mx-3">1</h6>
               <button onclick="contador('+')" class="btn btn-sm">+</button>
             </div>
+
+
+            <span class="ml-5"><i class="fa-solid fa-trash-can"></i></span>
           </div>
 
         </div>
@@ -253,7 +256,7 @@
       <div class="d-flex justify-content-between modal-footer">
 
         <div id="total-carrinho">
-          <span>TOTAL</span>
+          <span>TOTAL R$</span>
           <span id=total-carrinho-valor></span>
         </div>
 
