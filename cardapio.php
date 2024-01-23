@@ -171,9 +171,9 @@
 
         <div class="d-flex justify-content-between modal-footer">
           <div  class="d-flex flex-row align-items-center">
-            <button onclick="contador('-')" style="gap: 3px;" class="btn btn-sm">-</button>
+            <button onclick="contador('-','contador-valor','preco-produto','total-modal')" style="gap: 3px;" class="btn btn-sm">-</button>
             <h6 id="contador-valor" class="mt-2 mx-3">1</h6>
-            <button onclick="contador('+')" class="btn btn-sm">+</button>
+            <button onclick="contador('+','contador-valor','preco-produto','total-modal')" class="btn btn-sm">+</button>
           </div>
 
           <div>
@@ -214,41 +214,45 @@
 
       </div>
 
-      <!-- BODY MODAL-->
-      <div id="conteudo-modal" class="modal-body ml-3">
-        <div class="row no-gutters align-items-center">
-
-
-          <div class="col-2 text-center">
-            <p style="font-weight: bold;" id="carrinho-produto-titulo">SEM NOME</p>
-          </div>
-
-
-          <div class="col-4">
-            <p id="carrinho-produto-descricao" class="font-weight-light text-break">Lorem, ipsum, dolor sit amet consectetur adipisicing elit. Natus adipisci tempora rem tenetur voluptate placeat fuga illum eum, ut modi.</p>
-          </div>
-
-          <div class="col-2 text-center">
-            <span>R$</span>
-
-            <span> 39.99</span>
-          </div>
-
-
-          <div class="col-4 text-center">
-            <div  class="d-flex flex-row align-items-center">
-              <button onclick="contador('-')" style="gap: 6px;" class="btn btn-sm">-</button>
-              <h6 id="contador-valor" class="mt-2 mx-3">1</h6>
-              <button onclick="contador('+')" class="btn btn-sm">+</button>
-            </div>
-
-
-            <span class="ml-5"><i class="fa-solid fa-trash-can"></i></span>
-          </div>
-
-        </div>
+      <!-- PRODUTOS CARRINHO MODAL-->
+      <div id="conteudo-modal-produtos" class="modal-body ml-3">
+        
       
       </div>
+
+
+
+      <div style="display: none;" id="conteudo-modal-dados-cliente" class="modal-body">
+        <div class="row container ">
+          <div style="border: 1px solid black" class="col">
+            <form action="">
+
+
+              <div class="form-group">
+                <label for="dados-cliente-nome">Nome Completo</label>
+                <input class="form-control" type="text" id="dados-cliente-nome" required>
+              </div>
+
+              <div class="form-group">
+                <label for="dados-cliente-nome">Endereço</label>
+                <input class="form-control py-2 my-2" type="text" id="dados-cliente-rua" placeholder="Rua" required>
+                <input class="form-control py-2 my-2" type="text" id="dados-cliente-bairro" placeholder="Bairro" required>
+                <input class="form-control py-2 my-2" type="text" id="dados-cliente-numero" placeholder="Número" required>
+                <input class="form-control py-2 my-2" type="text" id="dados-cliente-complemento" placeholder="Complemento">
+
+              </div>
+
+              <div class="form-group">
+                <label for="dados-cliente-nome">Nome Completo</label>
+                <input class="form-control" type="text" id="dados-cliente-nome">
+              </div>
+
+
+            </form>
+          </div>
+        </div>
+      </div>
+      
 
 
       <!-- CARRINHO FOOTER -->
@@ -257,11 +261,12 @@
 
         <div id="total-carrinho">
           <span>TOTAL R$</span>
-          <span id=total-carrinho-valor></span>
+          <span id="total-carrinho-valor"></span>
         </div>
 
           <div>
-            <button data-dismiss="modal" onclick="adicionarCarrinho()" style="color: white; background-color: #CF1223; font-weight:500"  class="btn btn-danger">
+            <!-- data-dismiss="modal" -->
+            <button onclick="alternaCarrinho()"  style="color: white; background-color: #CF1223; font-weight:500"  class="btn btn-danger">
               <span>FINALIZAR</span>
             </button>
           </div>

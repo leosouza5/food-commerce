@@ -1,21 +1,21 @@
 var carrinho = []
 
+contador('+','contador-carrinho-valor','carrinho-produto-preco')
 
-
-function contador(operador){
-	var contador = parseInt(document.getElementById('contador-valor').innerHTML)
-	var valor = document.getElementById('preco-produto').innerHTML
+function contador(operador,idContador,preco,idTotal){
+	var contador = parseInt(document.getElementById(idContador).innerHTML)
+	var valor = document.getElementById(preco).innerHTML
 
 	switch (operador) {
 		case '+': contador++
-				  document.getElementById('contador-valor').innerHTML = contador
-				  atualizarValor(parseFloat(valor),operador);
+				  document.getElementById(idContador).innerHTML = contador
+				  atualizarValor(parseFloat(valor),operador,idTotal);
 				  break;
 
 		case '-': if(contador != 1){
 					contador--
-					document.getElementById('contador-valor').innerHTML = contador
-					atualizarValor(parseFloat(valor),operador);
+					document.getElementById(idContador).innerHTML = contador
+					atualizarValor(parseFloat(valor),operador,idTotal);
 				  	break;
 				  }
 	}
@@ -26,9 +26,9 @@ function contador(operador){
 }
 
 
-function atualizarValor(valor,operador){
+function atualizarValor(valor,operador,idTotal){		
 
-	var totalElement = document.getElementById('total-modal');
+	var totalElement = document.getElementById(idTotal);
 
 
     var total = parseFloat(totalElement.innerHTML) || 0;
@@ -88,7 +88,7 @@ function coletaDados(){
 function adicionarCarrinho(){
 	nome_produto = document.getElementById('titulo-modal').innerHTML
 	observacao_produto = document.getElementById('observacao-modal').value
-	preco_produto =document.getElementById('total-modal').innerHTML
+	preco_produto =document.getElementById('preco-produto').innerHTML
 	quantidade = document.getElementById('contador-valor').innerHTML
 
 	produto = [nome_produto,observacao_produto,preco_produto,quantidade]
@@ -118,26 +118,34 @@ function contadorCarrinho(){		//CONTA A QNTD DE PRODUTOS NO CARRINHO
 
 	elemento.style.display = "inherit"
 
+	if(carrinho.length>0){
+		botaoElemento.removeAttribute('disabled')
+	} else {
+		botaoElemento.setAttribute('disabled', 'disabled');
+		elemento.style.display = "none"
+	}
+
 }
 
 
 
 function adicionarProdutosAoModal() {
         // Limpar o conteúdo atual do modal-body
-        var dynamicModalBody = document.getElementById('conteudo-modal');
+        var dynamicModalBody = document.getElementById('conteudo-modal-produtos');
         dynamicModalBody.innerHTML = '';
 		valorTotal = 0
         // Iterar sobre os produtos e criar elementos para cada um
-         carrinho.forEach(function(produto) {
+         carrinho.forEach(function(produto,index) {
 
+         		var ID = index;
 
-         		valorTotal += parseFloat(produto[2])
+         		valorTotal += parseFloat(produto[2]) * produto[3]
 
          		console.log(valorTotal)
 
                 // Criar elementos para o produto
                 var divProduto = document.createElement('div');
-                divProduto.className = 'row no-gutters align-items-center my-5 shadow p-5';
+                divProduto.className = 'row no-gutters align-items-center mb-5 shadow p-5';
 
                 divProduto.innerHTML = `
                     <div class="col-2 text-center">
@@ -148,15 +156,15 @@ function adicionarProdutosAoModal() {
                     </div>
                     <div class="col-2 text-center">
                         <span>R$</span>
-                        <span class="carrinho-produto-preco">${produto[2]}</span>
+                        <span id="carrinho-produto-preco" class="carrinho-produto-preco">${produto[2]}</span>
                     </div>
                     <div class="col-4 text-center">
                         <div class="d-flex flex-row align-items-center">
-                            <button onclick="contador('-')" style="gap: 6px;" class="btn btn-sm">-</button>
-                            <h6 class="mt-2 mx-3 contador-valor">${produto[3]}</h6>
-                            <button onclick="contador('+')" class="btn btn-sm">+</button>
+                            <button onclick="contador('-','contador-carrinho-valor-${ID}','carrinho-produto-preco','total-carrinho-valor')" style="gap: 6px;" class="btn btn-sm hover">-</button>
+                            <h6 id="contador-carrinho-valor-${ID}" class="mt-2 mx-3 contador-valor">${produto[3]}</h6>
+                            <button onclick="contador('+','contador-carrinho-valor-${ID}','carrinho-produto-preco','total-carrinho-valor')" class="btn btn-sm hover">+</button>
 
-                            <button  class="btn hover text-right"><i class="fa-solid fa-trash-can"></i></button>
+                            <button id="remover-produto" onclick="removerProduto(${index})") class="btn hover text-right ml-5"><i class="fa-solid fa-trash-can"></i></button>
                         </div>
 
 
@@ -170,6 +178,21 @@ function adicionarProdutosAoModal() {
          document.getElementById('total-carrinho-valor').innerHTML = valorTotal.toFixed(2)
     }
 
-    document.getElementById('modal-carrinho').addEventListener('show.bs.modal', function () {
-            adicionarProdutosAoModal();
-        });
+
+function removerProduto(indice){
+	carrinho.splice(indice,1);
+
+	adicionarProdutosAoModal()
+
+	contadorCarrinho()
+}
+
+function alternaCarrinho(){
+	var modalProdutos = document.getElementById('conteudo-modal-produtos');
+	var modalDadosCliente = document.getElementById('conteudo-modal-dados-cliente');
+
+	modalProdutos.style.display = 'none'
+	modalDadosCliente.style.display = 'inherit'
+
+
+}
