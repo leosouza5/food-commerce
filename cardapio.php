@@ -53,7 +53,7 @@
 
 
     <div class="col-4 text-right align-middle">
-      <button onclick="adicionarProdutosAoModal()" data-toggle="modal" data-target=".bd-example-modal-xl" id="botao-carrinho" disabled class="btn btn-dark mr-4">
+      <button onclick="adicionarProdutosAoModal();alternaCarrinho(1)" data-toggle="modal" data-target=".bd-example-modal-xl" id="botao-carrinho" disabled class="btn btn-dark mr-4">
         <span>
           <span>PEDIDO</span>
           <i class="fa-solid fa-cart-shopping"></i>
@@ -203,7 +203,7 @@
 <!-- HEADER MODAL -->
 
       <div style="background-color:#CF1223;" class="modal-header">
-        <button href="cardapio.php" class="btn hover">
+        <button style="display: none;" onclick="alternaCarrinho(1)" id="botao-carrinho-voltar" href="cardapio.php" class="btn hover">
         <i style="color: white; font-size: 1.3rem;" class="fa-solid fa-arrow-left"></i>
         </button>
 
@@ -224,27 +224,71 @@
 
       <div style="display: none;" id="conteudo-modal-dados-cliente" class="modal-body">
         <div class="row container ">
-          <div style="border: 1px solid black" class="col">
-            <form action="">
+          <div class="col">
+            <form id="formulario-dados-cliente" action="carrinho.php" method="POST">
 
 
-              <div class="form-group">
+              <div class="form-group rounded shadow p-4">
                 <label for="dados-cliente-nome">Nome Completo</label>
-                <input class="form-control" type="text" id="dados-cliente-nome" required>
+                <span style="display: none;" id="erro-cliente-campo" class="alert alert-info ">Porfavor informe um nome válido</span>
+                <input class="form-control" type="text" id="dados-cliente-nome" name="nome" required>
               </div>
 
-              <div class="form-group">
-                <label for="dados-cliente-nome">Endereço</label>
-                <input class="form-control py-2 my-2" type="text" id="dados-cliente-rua" placeholder="Rua" required>
-                <input class="form-control py-2 my-2" type="text" id="dados-cliente-bairro" placeholder="Bairro" required>
-                <input class="form-control py-2 my-2" type="text" id="dados-cliente-numero" placeholder="Número" required>
-                <input class="form-control py-2 my-2" type="text" id="dados-cliente-complemento" placeholder="Complemento">
+              <div class="form-group rounded shadow p-4">
+
+                <div id="dados-cliente-endereco">
+                  <span id="span-dados-endereco">
+                    <label for="dados-cliente-rua">Endereço</label> 
+                    <span style="display: none;" id="erro-endereco-campo" class="alert alert-info ">Por favor preencha os campos <b>RUA, BAIRRO e NUMERO</b></span></span>
+                    <input class="form-control py-2 my-2" name="rua" type="text" id="dados-cliente-rua" placeholder="Rua" required>
+                    <input class="form-control py-2 my-2" name="bairro" type="text" id="dados-cliente-bairro" placeholder="Bairro" required>
+                    <input class="form-control py-2 my-2" name="numero" type="text" id="dados-cliente-numero" placeholder="Número" required>
+                    <input class="form-control py-2 my-2" name="complemento" type="text" id="dados-cliente-complemento" placeholder="Complemento"> 
+                  </span>
+                  
+
+                </div>
+                
+                <div class="custom-control custom-switch mt-4">
+                  <input type="checkbox" class="custom-control-input" name="retirar-loja" id="checkbox-retirar-pedido">
+                  <label for="checkbox-retirar-pedido" class="custom-control-label">RETIRAR NA LOJA</label>
+                </div>
+
+
+
 
               </div>
 
-              <div class="form-group">
-                <label for="dados-cliente-nome">Nome Completo</label>
-                <input class="form-control" type="text" id="dados-cliente-nome">
+              <div class="form-group rounded shadow p-4">
+                <span style="display: none;" id="erro-pagamento-campo" class="alert alert-info ">Porfavor informe uma forma de pagamento válida</span>
+                <label for="dados-cliente-metodo-pagamento">Forma de Pagamento</label>
+                <small id="instrucao-pagamento" class="form-text text-muted">Todas as formas de pagamento serão recebidos na hora da entrega ou retirada...</small>
+                <select class="form-control" name="metodo-pagamento" id="dados-cliente-metodo-pagamento">
+                  <option value="" selected>Escolha...</option>
+                  <option value="dinheiro">Dinheiro</option>
+                  <option value="cartao">Cartao</option>
+                  <option value="pix">Pix</option>
+
+                </select>
+
+
+
+                <!-- INPUT SIMBOLICO PARA PRODUTOS-->
+                <input id="dados-carrinho-produtos" name="carrinho-json" type="hidden">  
+
+
+                <span style="display: none;" id="divTroco">
+                  <label class="mt-4" for="dados-cliente-precisa-troco">Precisa de Troco ?</label>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <select class="form-control" id="dados-cliente-precisa-troco">
+                        <option value="sim">Sim</option>
+                        <option selected value="nao">Nao</option>
+                      </select>
+                    </div>
+                    <input disabled id="dados-cliente-valor-troco" name="valor-troco" class="form-control" type="number">
+                  </div>
+                </span>
               </div>
 
 
@@ -266,7 +310,12 @@
 
           <div>
             <!-- data-dismiss="modal" -->
-            <button onclick="alternaCarrinho()"  style="color: white; background-color: #CF1223; font-weight:500"  class="btn btn-danger">
+
+            <button id="botao-carrinho-proximo" onclick="alternaCarrinho(2)" style="color: white; font-weight:500" class="btn btn-warning">
+              <span>PROXIMO</span>
+            </button>
+
+            <button id="botao-carrinho-finalizar" type="button" onclick="finalizarVenda()" style="color: white; background-color: #CF1223; font-weight:500; display: none;"  class="btn btn-danger">
               <span>FINALIZAR</span>
             </button>
           </div>

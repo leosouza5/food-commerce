@@ -1,5 +1,18 @@
 <?php  
-$carrinho = json_decode($_POST['produtos'],true);
+
+echo "<pre>";
+
+print_r($_POST);
+
+echo "</pre>";
+
+$dadosProdutoJSON = $_POST['carrinho-json'];
+
+// Converter o JSON de volta para um array
+$dadosProduto = json_decode($dadosProdutoJSON, true);
+
+
+print_r($dadosProduto);
 
 ?>
 

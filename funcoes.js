@@ -1,6 +1,64 @@
 var carrinho = []
 
-contador('+','contador-carrinho-valor','carrinho-produto-preco')
+var checkboxRetirarPedido = document.getElementById('checkbox-retirar-pedido'); //checkbox da entrega
+var selectFormaPagamento = document.getElementById('dados-cliente-metodo-pagamento') //select da forma de pagamento
+var selectPrecisaTroco = document.getElementById('dados-cliente-precisa-troco')
+var divDadosClienteEndereco = document.getElementById('dados-cliente-endereco'); //div que tem os inputs do endereço
+var inputTroco = document.getElementById('dados-cliente-valor-troco')
+
+checkboxRetirarPedido.addEventListener('change', function() {
+
+        if (checkboxRetirarPedido.checked) {
+
+            divDadosClienteEndereco.style.display = 'none';
+
+            document.getElementById('dados-cliente-rua').setAttribute('disabled','disabled')
+            document.getElementById('dados-cliente-bairro').setAttribute('disabled','disabled')
+            document.getElementById('dados-cliente-numero').setAttribute('disabled','disabled')
+            document.getElementById('dados-cliente-complemento').setAttribute('disabled','disabled')
+        } else {
+
+            divDadosClienteEndereco.style.display = 'inherit';
+
+            document.getElementById('dados-cliente-rua').removeAttribute('disabled','disabled')
+            document.getElementById('dados-cliente-bairro').removeAttribute('disabled','disabled')
+            document.getElementById('dados-cliente-numero').removeAttribute('disabled','disabled')
+            document.getElementById('dados-cliente-complemento').removeAttribute('disabled','disabled')
+        }
+    });
+
+
+		
+//ATIVA E DESATIVA SPAM PARA TROCO
+
+selectFormaPagamento.addEventListener('change', function() {
+
+	divTroco = document.getElementById('divTroco')
+        if (selectFormaPagamento.value == 'dinheiro') {
+        	divTroco.style.display = 'inherit'
+        } else {
+
+            divTroco.style.display = 'none'
+        }
+    });
+
+
+//ATIVA E DESATIVA O INPUT DO TROCO
+
+selectPrecisaTroco.addEventListener('change', function() {
+
+	
+
+        if (selectPrecisaTroco.value == 'nao') {
+        	inputTroco.setAttribute('disabled', 'disabled');
+        } else {
+
+            inputTroco.disabled = false;
+        }
+    });
+
+
+
 
 function contador(operador,idContador,preco,idTotal){
 	var contador = parseInt(document.getElementById(idContador).innerHTML)
@@ -171,7 +229,7 @@ function adicionarProdutosAoModal() {
                     </div>
                 `;
 
-                // Adicionar o elemento do produto ao modal-body
+                
                 dynamicModalBody.appendChild(divProduto);
             });
 
@@ -187,12 +245,89 @@ function removerProduto(indice){
 	contadorCarrinho()
 }
 
-function alternaCarrinho(){
+function alternaCarrinho(pagina){
 	var modalProdutos = document.getElementById('conteudo-modal-produtos');
 	var modalDadosCliente = document.getElementById('conteudo-modal-dados-cliente');
+	var botaoProximo = document.getElementById('botao-carrinho-proximo');
+	var botaoFinalizar = document.getElementById('botao-carrinho-finalizar');
+	var botaoVoltar = document.getElementById('botao-carrinho-voltar');
+	
 
-	modalProdutos.style.display = 'none'
-	modalDadosCliente.style.display = 'inherit'
+
+	if (pagina == 2) {
+
+		modalProdutos.style.display = 'none'
+		modalDadosCliente.style.display = 'inherit'
+
+		botaoProximo.style.display = 'none'
+		botaoFinalizar.style.display = 'inherit'
+
+		botaoVoltar.style.display = 'inherit'
+
+	} else{
+		modalProdutos.style.display = 'block'
+		modalDadosCliente.style.display = 'none'
+
+		botaoProximo.style.display = 'inherit'
+		botaoFinalizar.style.display = 'none'
+
+		botaoVoltar.style.display = 'none'
+	}
+
+}
 
 
+function finalizarVenda(){
+	var form = document.getElementById('formulario-dados-cliente')
+	var rua = document.getElementById('dados-cliente-rua').value
+    var bairro = document.getElementById('dados-cliente-bairro').value
+    var numero = document.getElementById('dados-cliente-numero').value
+    var nomeCliente = document.getElementById('dados-cliente-nome').value
+    var formaPagamento = document.getElementById('dados-cliente-metodo-pagamento').value
+    var carrinhoJSON = JSON.stringify(carrinho);
+    var campoErroEndereco = document.getElementById('erro-endereco-campo')
+    var campoErroNome = document.getElementById('erro-cliente-campo')
+    var campoErroFormaPagamento = document.getElementById('erro-pagamento-campo')
+
+    if(nomeCliente == ''){
+    	campoErroNome.style.display ='inherit'   //verifica se existe nome
+    	return
+    }else{
+    	campoErroNome.style.display ='none'
+    }
+
+
+    if(!checkboxRetirarPedido.checked && (rua == '' || bairro == '' || numero == '')){    //verifica dados endereços
+    	var dadosEndereco = false
+    	campoErroEndereco.style.display ='inherit'
+    	valorErroEndereco.innerHTML = ''
+    	return;
+
+    } else{
+		var dadosEndereco = true;
+		campoErroEndereco.style.display ='none'
+    }
+
+    if(formaPagamento == ''){
+    	campoErroFormaPagamento.style.display ='inherit'   //verifica se existe nome
+    	return
+    }else{
+    	campoErroFormaPagamento.style.display ='none'
+    }
+
+
+		//se precisa troco = nao e tiver algum valor de troco informado
+		// ele vai setar como disabled o input
+	if (selectPrecisaTroco.value == 'nao' && inputTroco.value != ''){
+		inputTroco.setAttribute('disabled,disabled')
+	}
+
+	document.getElementById('dados-carrinho-produtos').value = carrinhoJSON
+
+	form.submit()
+
+
+
+
+	
 }
