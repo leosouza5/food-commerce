@@ -1,14 +1,13 @@
 <?php
-  
-  #require_once '../../projeto/conexao.php';
-  #require_once '../../projeto/cadprodu_services.php';
+  require_once 'cadprodu_services.php';
 
   #$conexao = new Conexao();
 
- # $pdo = $conexao->conectar();
+  #$pdo = $conexao->conectar();
+  $servico = new produtoService();
+  $listaprodutos = $servico->recuperar();
 
-  #$servico = new produtoService();
-
+  print_r($listaprodutos);
 
 ?>
 
@@ -66,33 +65,11 @@
 
 
   <div class="row no-gutters" >
-    <div class="col-3 overflow-auto" style="height: 87vh;">
-      <div class="list-group">
-        <a style="background-color: #eee; font-weight: 500; color: #212529;" href="#" class="list-group-item list-group-item-action hover">The current link item</a>
-        <a style="background-color: #eee; font-weight: 500; color: #212529;" href="#" class="list-group-item list-group-item-action hover">A second link item</a>
-        <a style="background-color: #eee; font-weight: 500; color: #212529;" href="#" class="list-group-item list-group-item-action hover">A third link item</a>
-        <a style="background-color: #eee; font-weight: 500; color: #212529;" href="#" class="list-group-item list-group-item-action hover">A fourth link item</a>
-        <a style="background-color: #eee; font-weight: 500; color: #212529;" href="#" class="list-group-item list-group-item-action hover">A disabled link item</a>
-        <a style="background-color: #eee; font-weight: 500; color: #212529;" href="#" class="list-group-item list-group-item-action hover">The current link item</a>
-        <a style="background-color: #eee; font-weight: 500; color: #212529;" href="#" class="list-group-item list-group-item-action hover">A second link item</a>
-        <a style="background-color: #eee; font-weight: 500; color: #212529;" href="#" class="list-group-item list-group-item-action hover">A third link item</a>
-        <a style="background-color: #eee; font-weight: 500; color: #212529;" href="#" class="list-group-item list-group-item-action hover">A fourth link item</a>
-        <a style="background-color: #eee; font-weight: 500; color: #212529;" href="#" class="list-group-item list-group-item-action hover">A disabled link item</a>
-        <a style="background-color: #eee; font-weight: 500; color: #212529;" href="#" class="list-group-item list-group-item-action hover">The current link item</a>
-        <a style="background-color: #eee; font-weight: 500; color: #212529;" href="#" class="list-group-item list-group-item-action hover">A second link item</a>
-        <a style="background-color: #eee; font-weight: 500; color: #212529;" href="#" class="list-group-item list-group-item-action hover">A third link item</a>
-        <a style="background-color: #eee; font-weight: 500; color: #212529;" href="#" class="list-group-item list-group-item-action hover">A fourth link item</a>
-        <a style="background-color: #eee; font-weight: 500; color: #212529;" href="#" class="list-group-item list-group-item-action hover">A disabled link item</a>
-        <a style="background-color: #eee; font-weight: 500; color: #212529;" href="#" class="list-group-item list-group-item-action hover">The current link item</a>
-        <a style="background-color: #eee; font-weight: 500; color: #212529;" href="#" class="list-group-item list-group-item-action hover">A second link item</a>
-        <a style="background-color: #eee; font-weight: 500; color: #212529;" href="#" class="list-group-item list-group-item-action hover">A third link item</a>
-        <a style="background-color: #eee; font-weight: 500; color: #212529;" href="#" class="list-group-item list-group-item-action hover">A fourth link item</a>
-        <a style="background-color: #eee; font-weight: 500; color: #212529;" href="#" class="list-group-item list-group-item-action hover">A disabled link item</a>
-
-      </div>
+    <div class="col-2 overflow-auto" style="height: 87vh;">
+      
     </div>
 
-    <div class="col-9 border-left overflow-auto"  style="height: 87vh;" >
+    <div class="col-10 border-left overflow-auto"  style="height: 87vh;" >
 
       <!---TITULO DA EMPRESA -->
 
@@ -119,7 +96,6 @@
         </div>
 
       </div>
-
       
   </div>
 
