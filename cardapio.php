@@ -1,13 +1,14 @@
 <?php
   require_once 'cadprodu_services.php';
 
-  #$conexao = new Conexao();
 
-  #$pdo = $conexao->conectar();
   $servico = new produtoService();
   $listaprodutos = $servico->recuperar();
 
-  print_r($listaprodutos);
+  $JSONProdutos = json_encode($listaprodutos);
+
+
+
 
 ?>
 
@@ -24,6 +25,10 @@
   <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
   <script src="ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="bootstrap/js/bootstrap.min.js"></script>
+  <script>
+         var JsonProdutos = <?php echo $JSONProdutos;?>;
+
+  </script>
 
 
 
@@ -42,9 +47,14 @@
     
   <header style="background-color: #CF1223; height: 13vh;" class="row no-gutters cabecalho align-items-center shadow-sm">
 
+
     <div class="col-4">
       <img height="50px" src="imagens/emp-logo.jpg" class="ml-3 rounded" alt="">
     </div>
+
+
+
+
 
     <div class="col-4">
       
@@ -65,11 +75,23 @@
 
 
   <div class="row no-gutters" >
+
+
+
+
+    <!-- BARRA LATERAL -->
+
+
     <div class="col-2 overflow-auto" style="height: 87vh;">
-      
+      <div id="list-example" class="list-group">
+        <a class="list-group-item list-group-item-action" href="#list-item-1">Item 1</a>
+        <a class="list-group-item list-group-item-action" href="#list-item-2">Item 2</a>
+        <a class="list-group-item list-group-item-action" href="#list-item-3">Item 3</a>
+        <a class="list-group-item list-group-item-action" href="#list-item-4">Item 4</a>
+      </div>
     </div>
 
-    <div class="col-10 border-left overflow-auto"  style="height: 87vh;" >
+    <div id="listaProdutosDinamicos" data-spy="scroll" data-target="#list-example" data-offset="0" class="col-10 border-left overflow-auto"  style="height: 87vh;" >
 
       <!---TITULO DA EMPRESA -->
 
@@ -79,10 +101,10 @@
 
        <!---LINHA PRODUTO -->
 
-      <div  class="row no-gutters align-items-center border-bottom p-2 hover" data-toggle="modal" data-target="#exampleModal" onclick="coletaDados()">
+      <div id="list-item-1"  class="row no-gutters align-items-center border-bottom p-2 hover" data-toggle="modal" data-target="#modal-dados-produto" onclick="coletaDados()">
 
         <div class="col-2 ">
-          <img height="80px" src="imagens/teste.jpg" class="rounded" alt="" >
+          <img  height="80px" src="imagens/teste.jpg" class="rounded" alt="" >
         </div>
 
         <div class="col-8 ">
@@ -95,13 +117,12 @@
           <span id="preco-produto">99.99</span>
         </div>
 
-      </div>
+      </div>      
       
   </div>
 
-
 <!-- Modal Produtos -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="modal-dados-produto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg " role="document">
       <div style="background-color:#eee;" class="modal-content">
 
@@ -123,7 +144,7 @@
         <div class="modal-body ">    <!-- CORPO DO MODAL -->
 
           <div class="text-center">
-            <img class="rounded" height="200px" src="imagens/teste.jpg" alt="">
+            <img id="foto-modal" class="rounded" height="200px" src="imagens/teste.jpg" alt="">
           </div>
 
           <p class="mt-4 text-start" id="descricao-modal" name ="descricao">a</p>
@@ -318,7 +339,8 @@
         <input id="carrinho-produtos" type="hidden" name="produtos">
     </form>
 
- <script src="funcoes.js"></script>
+ <script src="funcoes.js">
+ </script>
 
 </body>
 

@@ -6,6 +6,12 @@ var selectPrecisaTroco = document.getElementById('dados-cliente-precisa-troco')
 var divDadosClienteEndereco = document.getElementById('dados-cliente-endereco'); //div que tem os inputs do endereço
 var inputTroco = document.getElementById('dados-cliente-valor-troco')
 
+montarListaProdutos()
+
+
+
+
+
 checkboxRetirarPedido.addEventListener('change', function() {
 
         if (checkboxRetirarPedido.checked) {
@@ -119,17 +125,17 @@ function atualizarValor(valor,operador,idTotal){
 //  		FUNÇOES PARA INSERIR NO MODAL PRODUTO CARDAPIO.PHP     //
 
 
-function coletaDados(){
-	var nome_produto = document.getElementById('nome-produto').innerHTML
-	var descricao_produto = document.getElementById('descricao-produto').innerHTML
-	var preco_produto = document.getElementById('preco-produto').innerHTML
-	//img_produto = document.getElementById('nome-produto').innerHTML
+function coletaDados(id){
+	var nome_produto = document.getElementById('nome-produto-' + id).innerHTML
+	var descricao_produto = document.getElementById('descricao-produto-' + id).innerHTML
+	var preco_produto = document.getElementById('preco-produto-' + id).innerHTML
+	var img_produto = document.getElementById('foto-produto-' + id).getAttribute('src');
 
 
 	//titulo-modal = document.getElementById('titulo-modal').innerHTML
 	//descricao-modal = document.getElementById('descricao-modal').innerHTML
 
-
+	document.getElementById('foto-modal').setAttribute('src',img_produto)
 	document.getElementById('titulo-modal').innerHTML = nome_produto
 	document.getElementById('descricao-modal').innerHTML = descricao_produto
 	document.getElementById('total-modal').innerHTML = preco_produto
@@ -156,7 +162,8 @@ function adicionarCarrinho(){
 
 	contadorCarrinho()
 
-	console.log(carrinho)
+	console.log(carrinho);
+
 
 }
 
@@ -182,6 +189,8 @@ function contadorCarrinho(){		//CONTA A QNTD DE PRODUTOS NO CARRINHO
 		botaoElemento.setAttribute('disabled', 'disabled');
 		elemento.style.display = "none"
 	}
+
+
 
 }
 
@@ -324,10 +333,56 @@ function finalizarVenda(){
 
 	document.getElementById('dados-carrinho-produtos').value = carrinhoJSON
 
+
+
 	form.submit()
-
-
-
-
 	
+}
+
+
+function montarListaProdutos() {
+
+	divProdutos = document.getElementById('listaProdutosDinamicos')
+	divProdutos.innerHTML = '';
+
+	console.log(JsonProdutos)
+
+	JsonProdutos.forEach(function(produto,index) {
+		var linhaProduto = document.createElement('div');
+		linhaProduto.className = 'row no-gutters align-items-center border-bottom p-2 hover'
+		linhaProduto.id = produto.id;
+
+		linhaProduto.setAttribute('data-toggle', 'modal');
+    	linhaProduto.setAttribute('data-target', '#modal-dados-produto');
+
+
+		linhaProduto.onclick = function(){
+			coletaDados(produto.id)
+		}
+
+
+
+		linhaProduto.innerHTML = `
+			<div class="col-2 ">
+	          <img id="foto-produto-${produto.id}" height="80px;"  width="140px" src="${produto.img}" class="rounded" alt="" >
+	        </div>
+
+	        <div class="col-8 ">
+	          <p id="nome-produto-${produto.id}" style="font-weight: bolder; margin-bottom:">${produto.nome}</p>
+	          <p id="descricao-produto-${produto.id}" class="text-truncate">${produto.descricao}</p>
+	        </div>
+
+	        <div class="col-2 text-center p-2">
+	          <span>R$ </span> 
+	          <span id="preco-produto-${produto.id}">${produto.valor}</span>
+	          <span style="display:none;" id="${produto.id}">99.99</span>
+	        </div>
+		`;
+
+		divProdutos.appendChild(linhaProduto)
+	})
+
+
+
+
 }
