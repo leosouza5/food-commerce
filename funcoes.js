@@ -68,7 +68,9 @@ selectPrecisaTroco.addEventListener('change', function() {
 
 function contador(operador,idContador,preco,idTotal){
 	var contador = parseInt(document.getElementById(idContador).innerHTML)
-	var valor = document.getElementById(preco).innerHTML
+	var valor = preco
+
+	console.log(valor)
 
 	switch (operador) {
 		case '+': contador++
@@ -131,9 +133,16 @@ function coletaDados(id){
 	var preco_produto = document.getElementById('preco-produto-' + id).innerHTML
 	var img_produto = document.getElementById('foto-produto-' + id).getAttribute('src');
 
+	var contadorMenos = document.getElementById('contador-menos')
+	var contadorMais = document.getElementById('contador-mais')
 
-	//titulo-modal = document.getElementById('titulo-modal').innerHTML
-	//descricao-modal = document.getElementById('descricao-modal').innerHTML
+	contadorMenos.onclick = function(){
+		contador('-','contador-valor',preco_produto,'total-modal');
+	}
+
+	contadorMais.onclick = function(){
+		contador('+','contador-valor',preco_produto,'total-modal');
+	}
 
 	document.getElementById('foto-modal').setAttribute('src',img_produto)
 	document.getElementById('titulo-modal').innerHTML = nome_produto
@@ -152,8 +161,12 @@ function coletaDados(id){
 function adicionarCarrinho(){
 	nome_produto = document.getElementById('titulo-modal').innerHTML
 	observacao_produto = document.getElementById('observacao-modal').value
-	preco_produto =document.getElementById('preco-produto').innerHTML
+	preco_produto = document.getElementById('total-modal').innerHTML
 	quantidade = document.getElementById('contador-valor').innerHTML
+
+	preco_unitario = parseFloat(preco_produto) / parseFloat(quantidade)
+
+	console.log(quantidade)
 
 	produto = [nome_produto,observacao_produto,preco_produto,quantidade]
 
@@ -189,8 +202,6 @@ function contadorCarrinho(){		//CONTA A QNTD DE PRODUTOS NO CARRINHO
 		botaoElemento.setAttribute('disabled', 'disabled');
 		elemento.style.display = "none"
 	}
-
-
 
 }
 
@@ -357,13 +368,13 @@ function montarListaProdutos() {
 
 
 		linhaProduto.onclick = function(){
-			coletaDados(produto.id)
+			coletaDados(produto.id);
 		}
 
 
 
 		linhaProduto.innerHTML = `
-			<div class="col-2 ">
+			<div class="col-2">
 	          <img id="foto-produto-${produto.id}" height="80px;"  width="140px" src="${produto.img}" class="rounded" alt="" >
 	        </div>
 

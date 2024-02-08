@@ -34,7 +34,6 @@
 
 
 
-
   <!--<link rel="stylesheet" href="style.css">-->
 
 
@@ -168,9 +167,9 @@
 
         <div class="d-flex justify-content-between modal-footer">
           <div  class="d-flex flex-row align-items-center">
-            <button onclick="contador('-','contador-valor','preco-produto','total-modal')" style="gap: 3px;" class="btn btn-sm">-</button>
+            <button id="contador-menos" style="gap: 3px;" class="btn btn-sm">-</button>
             <h6 id="contador-valor" class="mt-2 mx-3">1</h6>
-            <button onclick="contador('+','contador-valor','preco-produto','total-modal')" class="btn btn-sm">+</button>
+            <button id="contador-mais" class="btn btn-sm">+</button>
           </div>
 
           <div>
