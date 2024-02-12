@@ -9,7 +9,10 @@ var inputTroco = document.getElementById('dados-cliente-valor-troco')
 montarListaProdutos()
 
 
-
+setTimeout(function() {
+	$('#listaProdutosDinamicos').scrollspy({ target: '#categorias-lista' })
+	console.log('fui')
+}, 100);
 
 
 checkboxRetirarPedido.addEventListener('change', function() {
@@ -68,7 +71,7 @@ selectPrecisaTroco.addEventListener('change', function() {
 
 function contador(operador,idContador,preco,idTotal){
 	var contador = parseInt(document.getElementById(idContador).innerHTML)
-	var valor = preco
+	var valor = document.getElementById(preco).innerHTML
 
 	console.log(valor)
 
@@ -217,7 +220,11 @@ function adicionarProdutosAoModal() {
 
          		var ID = index;
 
-         		valorTotal += parseFloat(produto[2]) * produto[3]
+         		console.log(produto[2])
+         		console.log(produto[3])
+
+
+         		valorTotal += parseFloat(produto[2]) * parseFloat(produto[3])
 
          		console.log(valorTotal)
 
@@ -355,10 +362,17 @@ function montarListaProdutos() {
 
 	divProdutos = document.getElementById('listaProdutosDinamicos')
 	divProdutos.innerHTML = '';
+	divLista = document.getElementById('categorias-lista')
+	divLista.innerHTML = '';
+	ultimaCategoria = null
 
 	console.log(JsonProdutos)
 
+
 	JsonProdutos.forEach(function(produto,index) {
+
+
+
 		var linhaProduto = document.createElement('div');
 		linhaProduto.className = 'row no-gutters align-items-center border-bottom p-2 hover'
 		linhaProduto.id = produto.id;
@@ -371,6 +385,39 @@ function montarListaProdutos() {
 			coletaDados(produto.id);
 		}
 
+
+		console.log(produto.categoria)
+
+
+		if(produto.categoria != ultimaCategoria){
+			linhaTitulo = document.createElement('div');
+			
+
+			//CRIANDO LINHA TITULO DA CATEGORIA
+
+			ultimaCategoria = produto.categoria
+			linhaTitulo.id = produto.categoria
+			
+			linhaTitulo.innerHTML = `
+				<h6 class="text-center my-3 text-uppercase" style="font-size:2rem;">${produto.categoria}</h6>
+			`;
+
+			divProdutos.appendChild(linhaTitulo);
+
+			//INSERINDO CATEGORIA NA NAVBAR A ESQUERDA
+			linhaLista = document.createElement('a');
+
+			linhaLista.className = 'list-group-item list-group-item-action border p-3 text-uppercase categoria'
+
+			linhaLista.innerHTML = produto.categoria
+
+			linhaLista.href = '#' + produto.categoria
+
+			divLista.appendChild(linhaLista)
+
+			
+
+		}
 
 
 		linhaProduto.innerHTML = `
@@ -391,9 +438,14 @@ function montarListaProdutos() {
 		`;
 
 		divProdutos.appendChild(linhaProduto)
+
+
 	})
 
 
 
 
+
 }
+
+

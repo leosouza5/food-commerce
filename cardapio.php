@@ -82,7 +82,7 @@
 
 
     <div class="col-2 overflow-auto" style="height: 87vh;">
-      <div id="list-example" class="list-group">
+      <div id="categorias-lista" class="list-group d-flex" style="height: 87vh; background-color: #212529; justify-content: space-evenly;">
         <a class="list-group-item list-group-item-action" href="#list-item-1">Item 1</a>
         <a class="list-group-item list-group-item-action" href="#list-item-2">Item 2</a>
         <a class="list-group-item list-group-item-action" href="#list-item-3">Item 3</a>
@@ -90,7 +90,7 @@
       </div>
     </div>
 
-    <div id="listaProdutosDinamicos" data-spy="scroll" data-target="#list-example" data-offset="0" class="col-10 border-left overflow-auto"  style="height: 87vh;" >
+    <div id="listaProdutosDinamicos" data-spy="scroll" data-target="#categorias-lista" data-offset="5" class="col-10 border-left overflow-auto"  style="height: 87vh;" >
 
       <!---TITULO DA EMPRESA -->
 
@@ -339,6 +339,7 @@
     </form>
 
  <script src="funcoes.js">
+  $('#listaProdutosDinamicos').scrollspy({ target: '#categorias-lista' });
  </script>
 
 </body>

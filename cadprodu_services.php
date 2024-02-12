@@ -60,7 +60,7 @@
 
 
 
-				$sql = "SELECT * FROM produtos ORDER BY ID";
+				$sql = "SELECT * FROM produtos ORDER BY categoria,nome";
 				$stmt = $pdo->prepare($sql);
 				#$stmt->bindParam(':campo', $campo);
 				#$stmt->bindParam(':id', $id);

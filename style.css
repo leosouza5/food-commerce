@@ -38,3 +38,13 @@
   opacity: 0;
   pointer-events: none; /* Para evitar interações com os elementos ocultos */
 }
+
+.categoria{
+    background-color: #CF1223;
+}
+
+
+.list-group .list-group-item.active {
+    background-color: #ffffff; /* Cor de fundo branca */
+    color: #000000; /* Cor do texto preto */
+}
