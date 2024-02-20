@@ -26,7 +26,7 @@
   <script src="ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="bootstrap/js/bootstrap.min.js"></script>
   <script>
-         var JsonProdutos = <?php echo $JSONProdutos;?>;
+         var JsonProdutos = <?= $JSONProdutos?>;
 
   </script>
 
@@ -82,7 +82,7 @@
 
 
     <div class="col-2 overflow-auto" style="height: 87vh;">
-      <div id="categorias-lista" class="list-group d-flex" style="height: 87vh; background-color: #212529; justify-content: space-evenly;">
+      <div id="categorias-lista" class="list-group d-flex" style="height: 87vh; background-color: #CF1223; ">
         <a class="list-group-item list-group-item-action" href="#list-item-1">Item 1</a>
         <a class="list-group-item list-group-item-action" href="#list-item-2">Item 2</a>
         <a class="list-group-item list-group-item-action" href="#list-item-3">Item 3</a>
@@ -90,7 +90,7 @@
       </div>
     </div>
 
-    <div id="listaProdutosDinamicos" data-spy="scroll" data-target="#categorias-lista" data-offset="5" class="col-10 border-left overflow-auto"  style="height: 87vh;" >
+    <div id="listaProdutosDinamicos" data-spy="scroll" data-target="#categorias-lista" data-offset="0" class="col-10 border-left overflow-auto"  style="height: 87vh;" >
 
       <!---TITULO DA EMPRESA -->
 
@@ -100,7 +100,7 @@
 
        <!---LINHA PRODUTO -->
 
-      <div id="list-item-1"  class="row no-gutters align-items-center border-bottom p-2 hover" data-toggle="modal" data-target="#modal-dados-produto" onclick="coletaDados()">
+      <div id="list-item-1" style="position: relative;"  class="row no-gutters align-items-center border-bottom p-2 hover" data-toggle="modal" data-target="#modal-dados-produto" onclick="coletaDados()">
 
         <div class="col-2 ">
           <img  height="80px" src="imagens/teste.jpg" class="rounded" alt="" >
@@ -341,6 +341,7 @@
  <script src="funcoes.js">
   $('#listaProdutosDinamicos').scrollspy({ target: '#categorias-lista' });
  </script>
+
 
 </body>
 

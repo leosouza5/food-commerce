@@ -399,7 +399,7 @@ function montarListaProdutos() {
 			linhaTitulo.id = produto.categoria
 			
 			linhaTitulo.innerHTML = `
-				<h6 class="text-center my-3 text-uppercase" style="font-size:2rem;">${produto.categoria}</h6>
+				<h6 class="text-center display-5 py-3 text-uppercase border-bottom" style="font-size:2rem;">${produto.categoria}</h6>
 			`;
 
 			divProdutos.appendChild(linhaTitulo);
@@ -407,7 +407,7 @@ function montarListaProdutos() {
 			//INSERINDO CATEGORIA NA NAVBAR A ESQUERDA
 			linhaLista = document.createElement('a');
 
-			linhaLista.className = 'list-group-item list-group-item-action border p-3 text-uppercase categoria'
+			linhaLista.className = 'list-group-item list-group-item-action text-center'
 
 			linhaLista.innerHTML = produto.categoria
 

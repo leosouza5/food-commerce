@@ -41,10 +41,19 @@
 
 .categoria{
     background-color: #CF1223;
+
+
 }
 
 
 .list-group .list-group-item.active {
-    background-color: #ffffff; /* Cor de fundo branca */
-    color: #000000; /* Cor do texto preto */
+    background-color: white; /* Cor de fundo branca */
+    color: black; /* Cor do texto preto */
+    border:none;
+}
+
+
+.list-group .list-group-item{
+    background-color:#CF1223;
+    color: white;
 }
