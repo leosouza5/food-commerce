@@ -33,7 +33,7 @@
 			<div class="list-group rounded shadow-sm " style="background-color: #eee;">
 				  <button type="button" class="list-group-item list-group-item-action shadow">Cadastro de Produto</button>
 				  <button type="button" class="list-group-item list-group-item-action shadow">Cadastro de Categoria</button>
-				  <button type="button" class="list-group-item list-group-item-action shadow">Visualizar Cardapio</button>
+				  <button onclick="montarListaProdutos('container-dinamico')" type="button" class="list-group-item list-group-item-action shadow">Visualizar Cardapio</button>
 				  <button type="button" class="list-group-item list-group-item-action shadow">Pedidos</button>
 			</div>
 		</div>
@@ -42,7 +42,7 @@
 
 
 
-		<div style="height: 87vh;" class="col-10 overflow-auto">
+		<div id='container-dinamico' style="height: 87vh;" class="col-10 overflow-auto">
 
 
 			<!-- CAD PRODU -->
@@ -122,5 +122,7 @@
 
 		</div>
 	</div>
+
+	<script src="adm-funcoes.js"></script>
 </body>
 </html>

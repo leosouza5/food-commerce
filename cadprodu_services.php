@@ -1,8 +1,23 @@
 <?php 
 
-	require_once "../../projeto/conexao.php";
- 
+	require_once "conexao.php";
 
+	$cadprodu_services = new ProdutoService();
+
+ 
+		if (isset($_GET['metodo']) && method_exists($cadprodu_services, $_GET['metodo'])) {
+
+			$campo = isset($_GET['campo']) ? $_GET['campo'] : null;
+			$tabela = isset($_GET['tabela']) ? $_GET['tabela'] : null;
+			$where = isset($_GET['where']) ? $_GET['where'] : null;
+			$order = isset($_GET['order']) ? $_GET['order'] : null;
+
+		    $cadprodu_services->{$_GET['metodo']}($campo,$tabela,$where,$order);
+
+
+		} else {
+		    echo "Método não encontrado!";
+		}
 	
 
 	Class ProdutoService {
@@ -51,7 +66,7 @@
 		}
 
 
-		public function recuperar(){
+		public function recuperar($campos,$tabela,$where,$order){
 			try {
 
 				
@@ -60,18 +75,29 @@
 
 
 
-				$sql = "SELECT * FROM produtos ORDER BY categoria,nome";
+				$sql = "SELECT $campos FROM $tabela";
+
+				if(!empty($where)){
+					$sql .= "WHERE $where";
+				}
+
+				if (!empty($orderby)) {
+		            $sql .= " ORDER BY $order";
+		        }
+
+
 				$stmt = $pdo->prepare($sql);
 				#$stmt->bindParam(':campo', $campo);
 				#$stmt->bindParam(':id', $id);
 				
 				if($stmt->execute()){
 
-				     $resultados = $stmt->fetchALL(PDO::FETCH_ASSOC);
+				     $resultados = json_encode($stmt->fetchALL(PDO::FETCH_ASSOC));
 				     return $resultados;
 
 				}else{
 				    header("Location: cardapio.php?success=N");
+				    
 				    print_r($stmt->errorInfo());
 				}
 

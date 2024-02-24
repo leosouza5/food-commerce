@@ -3,7 +3,7 @@
 
 
   $servico = new produtoService();
-  $listaprodutos = $servico->recuperar();
+  $listaprodutos = $servico->recuperar("*","produtos","","");
 
   $JSONProdutos = json_encode($listaprodutos);
 
