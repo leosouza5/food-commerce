@@ -6,7 +6,7 @@
 		private $host = 'localhost';
 		private $dbname = 'projeto';
 		private $user = 'postgres';
-		private $pass = '123';
+		private $pass = '050623';
 
 
 

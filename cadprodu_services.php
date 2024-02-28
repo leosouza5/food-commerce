@@ -7,12 +7,18 @@
  
 		if (isset($_GET['metodo']) && method_exists($cadprodu_services, $_GET['metodo'])) {
 
+			$metodo = $_GET['metodo'];
+
 			$campo = isset($_GET['campo']) ? $_GET['campo'] : null;
 			$tabela = isset($_GET['tabela']) ? $_GET['tabela'] : null;
 			$where = isset($_GET['where']) ? $_GET['where'] : null;
 			$order = isset($_GET['order']) ? $_GET['order'] : null;
 
+
+
 		    $cadprodu_services->{$_GET['metodo']}($campo,$tabela,$where,$order);
+
+
 
 
 		} else {
@@ -93,6 +99,8 @@
 				if($stmt->execute()){
 
 				     $resultados = json_encode($stmt->fetchALL(PDO::FETCH_ASSOC));
+				    # echo $resultados;
+				      header('Content-Type: application/json');
 				     return $resultados;
 
 				}else{

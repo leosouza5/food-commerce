@@ -7,7 +7,8 @@ function recuperarDados(){
 	    if (ajax.status >= 200 && ajax.status < 300) {
 	        if (ajax.responseText.trim() !== '') { // Verifica se a resposta não está vazia
                 var response = JSON.parse(ajax.responseText);
-                callback(response); // Chama a função de callback com os dados recebidos
+                console.log(response);
+                return 
             } else {
                 console.error('Dados vazios recebidos');
             }
@@ -30,7 +31,7 @@ function recuperarDados(){
 
 
 
-function montarListaProdutos($container){
+/*function montarListaProdutos($container){
 	if(recuperarDados() != false){
 		divDinamica = document.getElementById($container);
 	divDinamica.innerHTML = '';
@@ -43,3 +44,4 @@ function montarListaProdutos($container){
 
 }
 
+*/
